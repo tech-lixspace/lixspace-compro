@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-lix-navy/60 backdrop-blur-sm border border-white/5 rounded-full mb-6 md:mb-8">
               <span className="w-2 h-2 bg-lix-blue rounded-full animate-pulse" />
               <span className="text-xs md:text-sm font-semibold text-lix-blue tracking-widest uppercase">
-                Enterprise Digital Architecture & SaaS Matrix
+                Enterprise Digital Architecture & SaaS Matrix ok
               </span>
             </div>
 
