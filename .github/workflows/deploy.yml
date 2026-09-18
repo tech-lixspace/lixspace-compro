@@ -1,0 +1,24 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main  # Atau master, sesuaikan dengan nama branch utama kamu
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute Remote SSH Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd /path/ke/folder/project/di/vps   # Sesuaikan dengan lokasi folder project di VPS kamu
+            git pull origin main
+            docker compose down || docker stop lixspace-compro
+            docker compose up -d --build || docker run -d --name lixspace-compro -p 8080:80 lixspace-compro-web
