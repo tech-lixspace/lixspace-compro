@@ -19,7 +19,7 @@ jobs:
           passphrase: ${{ secrets.VPS_PASSPHRASE }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /lokasi/folder/project/di/vps
+            cd /home/lixspace/lixspace-compro
             git pull origin main
             docker compose down || docker stop lixspace-compro
             docker compose up -d --build || docker run -d --name lixspace-compro -p 8080:80 lixspace-compro-web
