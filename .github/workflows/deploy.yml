@@ -19,7 +19,9 @@ jobs:
           passphrase: ${{ secrets.VPS_PASSPHRASE }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /home/lixspace/lixspace-compro
+            cd /home/lixspace/lixspace-compro 
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_ed25519
             GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" git pull origin main
             docker compose down || docker stop lixspace-compro
             docker compose up -d --build || docker run -d --name lixspace-compro -p 8080:80 lixspace-compro-web
