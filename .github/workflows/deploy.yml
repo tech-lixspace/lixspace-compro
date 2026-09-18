@@ -20,6 +20,6 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd /home/lixspace/lixspace-compro
-            git pull origin main
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" git pull origin main
             docker compose down || docker stop lixspace-compro
             docker compose up -d --build || docker run -d --name lixspace-compro -p 8080:80 lixspace-compro-web
